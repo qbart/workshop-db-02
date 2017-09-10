@@ -5,3 +5,74 @@
   %code
     T1 CROSS JOIN T2
 
+%h2 Example
+
+%pre
+  %code
+    { A, B } × { 1, 2 } = { (A, 1), (A, 2), (B, 1), (B, 2) }
+
+
+%h2 Ex5.1. build answer matrix for questions and users
+
+.row
+  .col-md-3
+    %h3 Questions
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th name
+      %tbody
+        - @questions.each do |q|
+          %tr
+            %td= q.id
+            %td= q.name
+
+  .col-md-3
+    %h3 Users
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th name
+      %tbody
+        - @users.each do |u|
+          %tr
+            %td= u.id
+            %td= u.name
+
+  .col-md-6
+    %h3 Answers
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th answer
+          %th question
+          %th user
+      %tbody
+        - @answers.each do |a|
+          %tr
+            %td= a.id
+            %td= a.answer
+            %td= a.question.name
+            %td= a.user.name
+
+.row
+  .col-md-12
+    %h3 Result
+    %table.table
+      - @result_1.group_by(&:name).each_with_index do |(question_name, answers), index|
+        - if index == 0
+          %tr
+            %th
+            - answers.each do |a|
+              %th= a.try :user_name
+
+        %tr
+          %th= question_name
+          - answers.each do |a|
+            %td= a.try :answer
+
+
+

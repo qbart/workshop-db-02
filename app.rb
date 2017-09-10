@@ -40,7 +40,7 @@ class App < Sinatra::Base
 
   get '/joins/cross' do
     get_all
-    @result = []
+    @result_1 = []
 
     haml :'joins/cross'
   end
@@ -48,6 +48,9 @@ class App < Sinatra::Base
   def get_all
     @books      = Book.order(:id)
     @categories = Category.order(:id)
+    @questions  = Question.order(:id)
+    @answers    = Answer.order(:id)
+    @users      = User.order(:id)
     @abc        = Abc.order(:label)
     @xyz        = Xyz.order(:label_reversed)
   end
