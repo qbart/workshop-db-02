@@ -1,0 +1,7 @@
+nav.navbar { margin-bottom: 16px; }
+
+pre {
+  background: #eee;
+  padding: 16px;
+  border-radius: 8px;
+}
