@@ -10,6 +10,9 @@
 %p
   %img{src: '/images/img_rightjoin.gif'}
 
+
+%h2 3.1. simple (start from books)
+
 .row
   .col-md-6
     %h3 Books
@@ -50,8 +53,56 @@
           %th name
           %th category
       %tbody
-        - @result.each do |row|
+        - @result_1.each do |row|
           %tr
             %td= row.id || "NULL"
             %td= row.title || "NULL"
-            %td= row.name
+            %td= row.try(:category_name) || "NULL"
+
+
+%h2 3.2. simple (start from categories)
+
+.row
+  .col-md-6
+    %h3 Categories
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th name
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %td= category.id
+            %td= category.name
+
+  .col-md-6
+    %h3 Books
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th title
+          %th category ID
+      %tbody
+        - @books.each do |book|
+          %tr
+            %td= book.id
+            %td= book.title
+            %td= book.category_id || "NULL"
+
+.row
+  .col-md-12
+    %h3 Result
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th name
+          %th book title
+      %tbody
+        - @result_2.each do |row|
+          %tr
+            %td= row.id || "NULL"
+            %td= row.name || "NULL"
+            %td= row.try(:book_title)

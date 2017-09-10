@@ -32,7 +32,9 @@ class App < Sinatra::Base
 
   get '/joins/full' do
     get_all
-    @result = []
+    @result_1 = []
+    @result_2 = []
+
     haml :'joins/full'
   end
 
