@@ -10,3 +10,48 @@
 %p
   %img{src: '/images/img_leftjoin.gif'}
 
+.row
+  .col-md-6
+    %h3 Books
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th title
+          %th category ID
+      %tbody
+        - @books.each do |book|
+          %tr
+            %td= book.id
+            %td= book.title
+            %td= book.category_id || "NULL"
+
+  .col-md-6
+    %h3 Categories
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th name
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %td= category.id
+            %td= category.name
+
+
+.row
+  .col-md-12
+    %h3 Result
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th name
+          %th category
+      %tbody
+        - @result.each do |row|
+          %tr
+            %td= row.id
+            %td= row.title
+            %td= row.category.try!(:name) || "NULL"
