@@ -16,14 +16,17 @@ class App < Sinatra::Base
 
   get '/joins/left' do
     get_all
-    @result = []
+    @result_1 = []
+    @result_2 = []
 
     haml :'joins/left'
   end
 
   get '/joins/right' do
     get_all
-    @result = []
+    @result_1 = []
+    @result_2 = []
+
     haml :'joins/right'
   end
 
