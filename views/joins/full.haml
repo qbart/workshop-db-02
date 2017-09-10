@@ -10,6 +10,8 @@
 %p
   %img{src: '/images/img_fulljoin.gif'}
 
+%h2 Ex4.1. simple
+
 .row
   .col-md-6
     %h3 Books
@@ -50,8 +52,61 @@
           %th name
           %th category
       %tbody
-        - @result.each do |row|
+        - @result_1.each do |row|
           %tr
             %td= row.id || "NULL"
             %td= row.title || "NULL"
-            %td= row.name || "NULL"
+            %td= row.try(:category_name) || "NULL"
+
+
+
+%h2 Ex4.2. find all books/categories that don't match (do not have categories or books)
+
+.row
+  .col-md-6
+    %h3 Books
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th title
+          %th category ID
+      %tbody
+        - @books.each do |book|
+          %tr
+            %td= book.id
+            %td= book.title
+            %td= book.category_id || "NULL"
+
+  .col-md-6
+    %h3 Categories
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th name
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %td= category.id
+            %td= category.name
+
+
+.row
+  .col-md-12
+    %h3 Result
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th book title
+          %th category ID
+          %th category name
+
+      %tbody
+        - @result_2.each do |row|
+          %tr
+            %td= row.id || "NULL"
+            %td= row.title || "NULL"
+            %td= row.try(:category_id) || "NULL"
+            %td= row.try(:category_name) || "NULL"
